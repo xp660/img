@@ -1,0 +1,10 @@
+C:\Users\a3344\Desktop\Img\Img\Img\bin\Debug\Img.exe.config
+C:\Users\a3344\Desktop\Img\Img\Img\bin\Debug\Img.exe
+C:\Users\a3344\Desktop\Img\Img\Img\bin\Debug\Img.pdb
+C:\Users\a3344\Desktop\Img\Img\Img\obj\Debug\Img.csprojAssemblyReference.cache
+C:\Users\a3344\Desktop\Img\Img\Img\obj\Debug\Img.Form1.resources
+C:\Users\a3344\Desktop\Img\Img\Img\obj\Debug\Img.Properties.Resources.resources
+C:\Users\a3344\Desktop\Img\Img\Img\obj\Debug\Img.csproj.GenerateResource.cache
+C:\Users\a3344\Desktop\Img\Img\Img\obj\Debug\Img.csproj.CoreCompileInputs.cache
+C:\Users\a3344\Desktop\Img\Img\Img\obj\Debug\Img.exe
+C:\Users\a3344\Desktop\Img\Img\Img\obj\Debug\Img.pdb
