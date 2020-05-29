@@ -36,8 +36,17 @@ namespace Img
 
         }
 
-
-
-
+        private void Gray_Click(object sender, EventArgs e)
+        {
+            if(CurrentImage != null)
+            {
+                int[,,] rgbData = CurrentImage.getRGBData();
+                CurrentImage.doGray(rgbData);
+            }
+            else
+            {
+                MessageBox.Show("請先載入圖形");
+            }
+        }
     }
 }
