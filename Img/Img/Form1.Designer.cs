@@ -35,6 +35,9 @@
             this.Green = new System.Windows.Forms.Button();
             this.Blue = new System.Windows.Forms.Button();
             this.Light = new System.Windows.Forms.Button();
+            this.dark = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // load
@@ -51,7 +54,7 @@
             // 
             this.Gray.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Gray.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Gray.Location = new System.Drawing.Point(24, 78);
+            this.Gray.Location = new System.Drawing.Point(12, 22);
             this.Gray.Name = "Gray";
             this.Gray.Size = new System.Drawing.Size(114, 47);
             this.Gray.TabIndex = 1;
@@ -61,9 +64,9 @@
             // 
             // Invert
             // 
-            this.Invert.Location = new System.Drawing.Point(43, 163);
+            this.Invert.Location = new System.Drawing.Point(12, 87);
             this.Invert.Name = "Invert";
-            this.Invert.Size = new System.Drawing.Size(83, 36);
+            this.Invert.Size = new System.Drawing.Size(114, 36);
             this.Invert.TabIndex = 2;
             this.Invert.Text = "負片";
             this.Invert.UseVisualStyleBackColor = true;
@@ -72,7 +75,7 @@
             // Red
             // 
             this.Red.BackColor = System.Drawing.Color.Red;
-            this.Red.Location = new System.Drawing.Point(66, 228);
+            this.Red.Location = new System.Drawing.Point(62, 210);
             this.Red.Name = "Red";
             this.Red.Size = new System.Drawing.Size(42, 41);
             this.Red.TabIndex = 3;
@@ -83,7 +86,7 @@
             // Green
             // 
             this.Green.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.Green.Location = new System.Drawing.Point(114, 228);
+            this.Green.Location = new System.Drawing.Point(110, 210);
             this.Green.Name = "Green";
             this.Green.Size = new System.Drawing.Size(38, 41);
             this.Green.TabIndex = 4;
@@ -94,7 +97,7 @@
             // Blue
             // 
             this.Blue.BackColor = System.Drawing.SystemColors.Highlight;
-            this.Blue.Location = new System.Drawing.Point(12, 228);
+            this.Blue.Location = new System.Drawing.Point(8, 210);
             this.Blue.Name = "Blue";
             this.Blue.Size = new System.Drawing.Size(48, 41);
             this.Blue.TabIndex = 5;
@@ -105,19 +108,50 @@
             // Light
             // 
             this.Light.BackColor = System.Drawing.Color.White;
-            this.Light.Location = new System.Drawing.Point(12, 306);
+            this.Light.Location = new System.Drawing.Point(98, 311);
             this.Light.Name = "Light";
-            this.Light.Size = new System.Drawing.Size(106, 47);
+            this.Light.Size = new System.Drawing.Size(36, 22);
             this.Light.TabIndex = 6;
-            this.Light.Text = "增加亮度";
+            this.Light.Text = "+";
             this.Light.UseVisualStyleBackColor = false;
             this.Light.Click += new System.EventHandler(this.Light_Click);
+            // 
+            // dark
+            // 
+            this.dark.BackColor = System.Drawing.Color.White;
+            this.dark.Location = new System.Drawing.Point(50, 311);
+            this.dark.Name = "dark";
+            this.dark.Size = new System.Drawing.Size(36, 23);
+            this.dark.TabIndex = 7;
+            this.dark.Text = "-";
+            this.dark.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(48, 287);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 12);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "亮度大小:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 186);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 12);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "濾鏡效果:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(160, 450);
+            this.ClientSize = new System.Drawing.Size(160, 465);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dark);
             this.Controls.Add(this.Light);
             this.Controls.Add(this.Blue);
             this.Controls.Add(this.Green);
@@ -128,6 +162,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -140,6 +175,9 @@
         private System.Windows.Forms.Button Green;
         private System.Windows.Forms.Button Blue;
         private System.Windows.Forms.Button Light;
+        private System.Windows.Forms.Button dark;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
