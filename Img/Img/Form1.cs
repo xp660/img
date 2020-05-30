@@ -26,6 +26,7 @@ namespace Img
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = @"C:\Users\a3344\Desktop\Img";
+            openFileDialog1.Filter = "所有檔案|*.*|BMP File|*.bmp|GMP File|*.gif";
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 ImageForm MyImage = new ImageForm(openFileDialog1.FileName); // 建立秀圖物件
@@ -151,7 +152,7 @@ namespace Img
                 int Width = rgbData.GetLength(0);
                 int Height = rgbData.GetLength(1);
 
-                // Step 2: 增加亮度 30 
+                // Step 2: 增加亮度 50 
                 int g;
                 for (int y = 0; y < Height; y++)
                 {
@@ -159,14 +160,14 @@ namespace Img
                     {
                         for (int c = 0; c < 3; c++)
                         {
-                            rgbData[x, y, c] += 30;
-                            //g = rgbData[x, y, c];
-                            //g += 30;
-                            //if (g > 255)
-                            //{
-                            //    g = 255;
-                            //    rgbData[x, y, c] = g;
-                            //}
+                            
+                            g = rgbData[x, y, c];
+                            g += 50;
+                            if (g > 255)
+                            {
+                                g = 255;
+                                rgbData[x, y, c] = g;
+                            }
                         }
                     }
                 }
@@ -180,6 +181,42 @@ namespace Img
             }
         }
 
+        private void dark_Click(object sender, EventArgs e)
+        {
+            if (CurrentImage != null)
+            {
+                // Step 1: 取出顏色資料
+                int[,,] rgbData = CurrentImage.getRGBData_unsafe();
+                int Width = rgbData.GetLength(0);
+                int Height = rgbData.GetLength(1);
 
+                // Step 2: 減少亮度 
+                int g;
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        for (int c = 0; c < 3; c++)
+                        {
+
+                            g = rgbData[x, y, c];
+                            g -= 100;
+                            if (g < 0)
+                            {
+                                g = 0;
+                                rgbData[x, y, c] = g;
+                            }
+                        }
+                    }
+                }
+
+                // Step 3: 將處理後的資料寫回 CurrentImage
+                CurrentImage.setRGBData_unsafe(rgbData);
+            }
+            else
+            {
+                MessageBox.Show("請先載入圖形");
+            }
+        }
     }
 }
