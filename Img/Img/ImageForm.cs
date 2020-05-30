@@ -231,5 +231,56 @@ namespace Img
             return rgbData;
         }
 
+        /******************************************************************************/
+        /*****************************setRGBData**************************************/
+        public void setRGBData_unsafe(int[,,] rgbData)
+        {
+            Bitmap bimage = CreateBitmap(rgbData);
+            
+            //更新
+            image = bimage;
+            this.Refresh();
+        }
+
+        public static Bitmap CreateBitmap(int[,,] rgbData)
+        {
+            int Width = rgbData.GetLength(0);
+            int Height = rgbData.GetLength(1);
+            Bitmap bimage = new Bitmap(Width, Height, PixelFormat.Format24bppRgb);
+
+            // Step 1: 先鎖住存放圖片的記憶體
+            BitmapData bmData = bimage.LockBits(new Rectangle(0, 0, Width, Height),
+                                           ImageLockMode.WriteOnly,
+                                           PixelFormat.Format24bppRgb);
+            int stride = bmData.Stride;
+            // Step 2: 取得像點資料的起始位址
+            System.IntPtr Scan0 = bmData.Scan0;
+            // 計算每行的像點所佔據的byte 總數
+            int ByteNumber_Width = bimage.Width * 3;
+            // 計算每一行後面幾個 Padding bytes
+            int ByteOfSkip = stride - ByteNumber_Width;
+
+            // Step 3: 直接利用指標, 把影像資料取出來
+            unsafe
+            {
+                byte* p = (byte*)(void*)Scan0;
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        p[0] = (byte)rgbData[x, y, 2]; // 先放 B
+                        ++p;
+                        p[0] = (byte)rgbData[x, y, 1];  // 再放 G 
+                        ++p;
+                        p[0] = (byte)rgbData[x, y, 0];  // 最後放 R  
+                        ++p;
+                    }
+                    p += ByteOfSkip; // 跳過剩下的 Padding bytes
+                }
+            }
+
+            bimage.UnlockBits(bmData);
+            return bimage;
+        }
     }
 }
