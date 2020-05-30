@@ -80,6 +80,8 @@ namespace Img
             image.Save(@"C:\Users\a3344\Desktop\Img/image.Gif");
         }
 
+
+        /*****************************doGray**************************************/
         public int[,,] getRGBData()
         {
             MessageBox.Show("開始RGB彩色資訊讀取");
@@ -127,6 +129,7 @@ namespace Img
             MessageBox.Show("灰階處理完成");
         }
 
+        /*****************************Invert**************************************/
         public void Invert()
         {
             Bitmap bimage = new Bitmap(image);
@@ -174,7 +177,59 @@ namespace Img
             return true;
         }
 
+        /******************************************************************************/
+        /*****************************getRGBData**************************************/
+        public int[,,] getRGBData_unsafe()
+        {
+            Bitmap bimage = new Bitmap(image);
+            return getRGBData(bimage);
+        }
 
+        public static int[,,] getRGBData(Bitmap bimage)
+        {
+            
+            // Step 1: 先鎖住存放圖片的記憶體
+            BitmapData bmData = bimage.LockBits(new Rectangle(0, 0, bimage.Width, bimage.Height),
+                                                ImageLockMode.ReadOnly,
+                                                PixelFormat.Format24bppRgb);
+            int stride = bmData.Stride;
+
+            // Step 2: 取得像點資料的起始位址
+            System.IntPtr Scan0 = bmData.Scan0;
+
+            // 計算每行的像點所佔據的byte 總數
+            int ByteNumber_Width = bimage.Width * 3;
+
+            // 計算每一行後面幾個 Padding bytes
+            int ByteofSkip = stride - ByteNumber_Width;
+
+            // Step 3: 直接利用指標, 更改圖檔的內容
+            int Height = bimage.Height;
+            int Width = bimage.Width;
+            int[,,] rgbData = new int[Width, Height, 3];
+            unsafe
+            {
+                byte* p = (byte*)(void*)Scan0;
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        rgbData[x, y, 2] = p[0]; // B
+                        ++p;
+                        rgbData[x, y, 1] = p[0]; // G
+                        ++p;
+                        rgbData[x, y, 0] = p[0]; // R
+                        ++p;
+
+
+                    }
+                    p += ByteofSkip; // 跳過剩下的 Padding bytes
+                }
+            }
+
+            bimage.UnlockBits(bmData);
+            return rgbData;
+        }
 
     }
 }

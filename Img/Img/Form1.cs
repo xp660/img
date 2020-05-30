@@ -66,20 +66,81 @@ namespace Img
         private void Red_Click(object sender, EventArgs e)
         {
 
+            if (CurrentImage != null)
+            {
+                ColoFilter(0);
+            }
+            else
+            {
+                MessageBox.Show("請先載入圖形");
+            }
         }
 
         private void Green_Click(object sender, EventArgs e)
         {
 
+            if (CurrentImage != null)
+            {
+                ColoFilter(1);
+            }
+            else
+            {
+                MessageBox.Show("請先載入圖形");
+            }
         }
 
         private void Blue_Click(object sender, EventArgs e)
         {
 
+            if (CurrentImage != null)
+            {
+                ColoFilter(2);
+            }
+            else
+            {
+                MessageBox.Show("請先載入圖形");
+            }
         }
 
 
-        
+        // ==================================   影像處理公用程式相關   =====================================
+        public void ColoFilter(int select)
+        {
+            // Step 1: 取出顏色資料
+            int[,,] rgbData = CurrentImage.getRGBData_unsafe();
+
+            // Step 2: 數位影像處理
+            //  將所有顏色 Channel 資料改成 0, 只留下紅色區域
+            int Width = rgbData.GetLength(0);
+            int Height = rgbData.GetLength(1);
+
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    switch (select)
+                    {
+                        case 0: // 執行紅色濾鏡功能
+                            rgbData[x, y, 1] = 0; // Green Channel 改成 0
+                            rgbData[x, y, 2] = 0; // Blue Channel 改成 0
+                            break;
+                        case 1: // 執行綠色 filter 功能
+                            rgbData[x, y, 0] = 0; // Red Channel 改成 0
+                            rgbData[x, y, 2] = 0; // Blue Channel 改成 0
+                            break;
+                        case 2: // 執行藍色濾鏡的功能
+                            rgbData[x, y, 0] = 0; // Red Channel 改成 0
+                            rgbData[x, y, 1] = 0; // Blue Channel 改成 0
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            // Step 3: 將處理後的資料寫回 CurrentImage
+            CurrentImage.setRGBData_unsafe(rgbData);
+        }
 
 
 
