@@ -30,6 +30,10 @@
         {
             this.load = new System.Windows.Forms.Button();
             this.Gray = new System.Windows.Forms.Button();
+            this.Invert = new System.Windows.Forms.Button();
+            this.Red = new System.Windows.Forms.Button();
+            this.Green = new System.Windows.Forms.Button();
+            this.Blue = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // load
@@ -53,11 +57,55 @@
             this.Gray.UseVisualStyleBackColor = true;
             this.Gray.Click += new System.EventHandler(this.Gray_Click);
             // 
+            // Invert
+            // 
+            this.Invert.Location = new System.Drawing.Point(594, 391);
+            this.Invert.Name = "Invert";
+            this.Invert.Size = new System.Drawing.Size(109, 47);
+            this.Invert.TabIndex = 2;
+            this.Invert.Text = "反轉顏色";
+            this.Invert.UseVisualStyleBackColor = true;
+            this.Invert.Click += new System.EventHandler(this.Invert_Click);
+            // 
+            // Red
+            // 
+            this.Red.Location = new System.Drawing.Point(476, 58);
+            this.Red.Name = "Red";
+            this.Red.Size = new System.Drawing.Size(227, 23);
+            this.Red.TabIndex = 3;
+            this.Red.Text = "紅色濾鏡";
+            this.Red.UseVisualStyleBackColor = true;
+            this.Red.Click += new System.EventHandler(this.Red_Click);
+            // 
+            // Green
+            // 
+            this.Green.Location = new System.Drawing.Point(476, 121);
+            this.Green.Name = "Green";
+            this.Green.Size = new System.Drawing.Size(227, 23);
+            this.Green.TabIndex = 4;
+            this.Green.Text = "綠色濾鏡";
+            this.Green.UseVisualStyleBackColor = true;
+            this.Green.Click += new System.EventHandler(this.Green_Click);
+            // 
+            // Blue
+            // 
+            this.Blue.Location = new System.Drawing.Point(476, 202);
+            this.Blue.Name = "Blue";
+            this.Blue.Size = new System.Drawing.Size(227, 23);
+            this.Blue.TabIndex = 5;
+            this.Blue.Text = "藍色濾鏡";
+            this.Blue.UseVisualStyleBackColor = true;
+            this.Blue.Click += new System.EventHandler(this.Blue_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Blue);
+            this.Controls.Add(this.Green);
+            this.Controls.Add(this.Red);
+            this.Controls.Add(this.Invert);
             this.Controls.Add(this.Gray);
             this.Controls.Add(this.load);
             this.Name = "Form1";
@@ -70,6 +118,10 @@
 
         private System.Windows.Forms.Button load;
         private System.Windows.Forms.Button Gray;
+        private System.Windows.Forms.Button Invert;
+        private System.Windows.Forms.Button Red;
+        private System.Windows.Forms.Button Green;
+        private System.Windows.Forms.Button Blue;
     }
 }
 

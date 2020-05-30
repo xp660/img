@@ -29,6 +29,7 @@ namespace Img
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 ImageForm MyImage = new ImageForm(openFileDialog1.FileName); // 建立秀圖物件
+                
                 MyImage.Show(); // 顯示秀圖照片
                 CurrentImage = MyImage;
 
@@ -40,13 +41,47 @@ namespace Img
         {
             if(CurrentImage != null)
             {
-                int[,,] rgbData = CurrentImage.getRGBData();
+                int[,,] rgbData = CurrentImage.getRGBData();                
                 CurrentImage.doGray(rgbData);
+               
             }
             else
             {
                 MessageBox.Show("請先載入圖形");
             }
         }
+
+        private void Invert_Click(object sender, EventArgs e)
+        {
+            if(CurrentImage != null)
+            {
+                CurrentImage.Invert();
+            }
+            else
+            {
+                MessageBox.Show("請先載入圖形");
+            }
+        }
+
+        private void Red_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Green_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Blue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        
+
+
+
     }
 }
